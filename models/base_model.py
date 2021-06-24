@@ -2,7 +2,7 @@
 """Defines BaseModel class
 """
 import uuid
-import datetime
+from datetime import datetime
 
 
 class BaseModel:
