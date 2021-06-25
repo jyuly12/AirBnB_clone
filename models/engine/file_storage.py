@@ -18,7 +18,7 @@ class FileStorage():
         """Sets in __objects the obj with key
         """
         key_name = obj.__class__.__name__ + '.' + obj.id
-        self.__objects: obj.to_dict()
+        self.__objects.update({key_name: obj.to_dict()})
         print("objects=", self.__objects)
 
     def save(self):
