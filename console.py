@@ -64,7 +64,26 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, arg):
         '''Deletes an instance based on the class name and id (save the change into the JSON file)'''
-        pass
+        args = arg.split()
+        if len(args) == 0:
+            print('** class name missing **')
+            return
+        if args[0] not in self.classes:
+            print("** class doesn't exist **")
+            return
+        if len(args) == 1:
+            print('** instance id missing **')
+            return
+        key = '{}.{}'.format(args[0], args[1])
+        objects = storage.all()
+        if key in objects.keys():
+            #1. actualizar __objects
+            objects.pop(key)
+            #3. serializar y guardar objects
+            storage.save()
+        else:
+            print("** no instance found **")
+            return 
     
     def do_all(self, arg):
         '''Prints all string representation of all instances based or not on the class name. '''
@@ -73,6 +92,17 @@ class HBNBCommand(cmd.Cmd):
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or 
         updating attribute (save the change into the JSON file).
+        """
+        """
+        if key in objects.keys():
+            my_dict = objects.get(key)
+            print(my_dict)
+            if 'name' in my_dict:
+                print('** attribute name missing **')
+                return
+            if my_dict.get('name') == '':
+                print('** value missing **')
+                return
         """
         pass
 
