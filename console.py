@@ -3,13 +3,15 @@
 import cmd
 import sys
 from models.base_model import BaseModel
+from models.user import User
 from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
     '''  '''
     prompt = '(hbnb) '
-    classes = ['BaseModel']
+    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 
+    'Place', 'Review']
 
 
     def do_quit(self, arg):
@@ -33,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if args[0] in self.classes:
-            new_instance = BaseModel()
+            new_instance = eval(args[0])()
             new_instance.save()
             print(new_instance.id)
         else:
@@ -87,7 +89,21 @@ class HBNBCommand(cmd.Cmd):
     
     def do_all(self, arg):
         '''Prints all string representation of all instances based or not on the class name. '''
-        pass
+        args = arg.split()
+        list_of_strings = []
+        objects = storage.all()
+        for key in objects.keys():
+            value = objects.get(key)
+            if args: # si nos pidieron objetos de una clase determinada
+                if args[0] in self.classes: # si creamos ese tipo de objetos
+                    if value.__class__.__name__ == args[0]: # si la clase del objeto coincide con la que nos piden
+                        list_of_strings.append(value.__str__())
+                else:
+                    print("** class doesn't exist **")
+                    return
+            else:
+                list_of_strings.append(objects[key].__str__())
+        print(list_of_strings)
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or 

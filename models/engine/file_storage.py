@@ -1,6 +1,9 @@
 #!/usr/bin/python3
 import json
 import os
+from models.base_model import BaseModel
+from models.user import User
+
 
 
 class FileStorage():
@@ -8,6 +11,7 @@ class FileStorage():
     """
     __file_path = 'file.json'
     __objects = {}
+    classes = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """Returns the dictionary __objects
@@ -18,15 +22,16 @@ class FileStorage():
         """Sets in __objects the obj with key
         """
         key_name = obj.__class__.__name__ + '.' + obj.id
-        self.__objects.update({key_name: obj.to_dict()})
-        print("objects=", self.__objects)
+        self.__objects.update({key_name: obj})
 
     def save(self):
         """Serializes __objects to the JSON file
         """
-        print("__objects=", self.__objects)
-        if len(self.__objects) >= 1:                     
-            string_representation = json.dumps(self.__objects)
+        my_dict = {}
+        if len(self.__objects) >= 1:     
+            for key, value in self.__objects.items():
+                my_dict[key] = value.to_dict()
+            string_representation = json.dumps(my_dict)
             with open (self.__file_path, 'w', encoding='utf-8') as jsonfile:
                 jsonfile.write(string_representation)
         
@@ -38,7 +43,6 @@ class FileStorage():
                 jsonstring = jsonfile.read()
             dict_of_objects = json.loads(jsonstring)
             for key in dict_of_objects:
-                from models.base_model import BaseModel
                 characteristics = dict_of_objects.get(key)
                 new_object = BaseModel(**characteristics)
                 self.new(new_object)
