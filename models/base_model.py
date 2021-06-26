@@ -5,11 +5,13 @@ import uuid
 from datetime import datetime
 
 
-class BaseModel:
+class BaseModel():
     """Defines all common attributes/methods for other classes
     """
     def __init__(self, *args, **kwargs):
         """Initialize the instance attributes
+        Class Attributes:
+        
         """
         if kwargs:
             for i in kwargs.keys():
@@ -26,7 +28,6 @@ class BaseModel:
             storage.new(self)
 
     def __str__(self):
-        print("self.dict=", self.__dict__)
         return ("[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__))
 
     def save(self):

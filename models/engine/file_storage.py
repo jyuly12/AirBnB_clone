@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import json
 import os
-from models.base_model import BaseModel
-from models.user import User
+from models.base_model import BaseModel #noborrar, se usan implicitamt en eval
+from models.user import User #noborrar, se usan implicitamt en eval
 
 
 
@@ -11,7 +11,6 @@ class FileStorage():
     """
     __file_path = 'file.json'
     __objects = {}
-    classes = {"BaseModel": BaseModel, "User": User}
 
     def all(self):
         """Returns the dictionary __objects
@@ -43,6 +42,6 @@ class FileStorage():
                 jsonstring = jsonfile.read()
             dict_of_objects = json.loads(jsonstring)
             for key in dict_of_objects:
-                characteristics = dict_of_objects.get(key)
-                new_object = BaseModel(**characteristics)
-                self.new(new_object)
+                characteristics = dict_of_objects.get(key) # obtener el diccionario
+                new_object = eval(characteristics.get('__class__'))(**characteristics) # crear el objeto
+                self.new(new_object) # guardar el objeto en el diccionario de objetos

@@ -10,8 +10,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     '''  '''
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User', 'State', 'City', 'Amenity', 
-    'Place', 'Review']
+    classes = ['BaseModel', 'User']
 
 
     def do_quit(self, arg):
@@ -109,18 +108,32 @@ class HBNBCommand(cmd.Cmd):
         """Updates an instance based on the class name and id by adding or 
         updating attribute (save the change into the JSON file).
         """
-        """
-        if key in objects.keys():
-            my_dict = objects.get(key)
-            print(my_dict)
-            if 'name' in my_dict:
-                print('** attribute name missing **')
+        args = arg.split()
+        if len(args) == 0:
+            print('** class name missing **')
+            return
+        elif args[0] not in self.classes:
+            print("** class doesn't exist **")
+            return
+        elif len(args) == 1:
+            print('** instance id missing **')
+            return
+        elif len(args) == 2:
+            print("** attribute name missing **")
+            return
+        elif len(args) == 3:
+            print("** value missing **")
+            return
+        else:
+            object_name = '{}.{}'.format(args[0], args[1])
+            dict_of_objects = storage.all()
+            if object_name in dict_of_objects.keys():
+                object = dict_of_objects.get(object_name)
+                object.__setattr__(args[2], args[3])
+                storage.save()
+            else:
+                print("** no instance found **")
                 return
-            if my_dict.get('name') == '':
-                print('** value missing **')
-                return
-        """
-        pass
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
