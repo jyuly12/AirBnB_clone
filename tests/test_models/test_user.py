@@ -13,7 +13,6 @@ class Test_User(unittest.TestCase):
     instance_name = 'User.' + instance.id
     instance.first_name = 'Betty'
 
-
     def test_userinit(self):
         """Test for the method __init__"""
         features = self.data_base.get(self.instance_name).to_dict()
@@ -58,8 +57,9 @@ class Test_User(unittest.TestCase):
     def test_usertodict(self):
         """Test for the method to_dict"""
         type_of_dict = str(type(self.instance.to_dict()))
-        self.assertEqual(type_of_dict, "<class 'dict'>" )
+        self.assertEqual(type_of_dict, "<class 'dict'>")
         self.assertIn(self.instance_name, self.data_base.keys())
+
 
 if __name__ == '__main__':
     unittest.main()
