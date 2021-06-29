@@ -144,7 +144,7 @@ class HBNBCommand(cmd.Cmd):
             dict_of_objects = storage.all()
             if object_name in dict_of_objects.keys():
                 object = dict_of_objects.get(object_name)
-                object.__setattr__(args[2], args[3])
+                object.__setattr__(args[2], args[3][1:-1])
                 storage.save()
             else:
                 print("** no instance found **")
