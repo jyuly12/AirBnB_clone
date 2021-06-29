@@ -2,10 +2,11 @@
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.amenity import Amenity
 
-all_objs = storage.all() # lista todo lo que haya en jsonfile
+all_objs = storage.all()
 print("-- Reloaded objects --")
-for obj_id in all_objs.keys(): #imprime cada objeto
+for obj_id in all_objs.keys():
     obj = all_objs[obj_id]
     print(obj)
 
@@ -20,6 +21,14 @@ print(my_user)
 
 print("-- Create a new User 2 --")
 my_user2 = User()
+my_user2.first_name = "John"
+my_user2.email = "airbnb2@holbertonshool.com"
+my_user2.password = "root"
+my_user2.save()
+print(my_user2)
+
+print("-- Create a new Place--")
+my_user2 = Place()
 my_user2.first_name = "John"
 my_user2.email = "airbnb2@holbertonshool.com"
 my_user2.password = "root"
