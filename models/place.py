@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """Place class saves the attributes of an place:
+    """Place class  saves the attributes of an place:
         - city_id (string)
         - user_id string)
         - name (string)

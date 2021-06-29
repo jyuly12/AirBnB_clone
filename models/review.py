@@ -5,7 +5,7 @@ from models.base_model import BaseModel
 
 
 class Review(BaseModel):
-    """Review class saves the attributes of a review:
+    """Review class  saves the attributes of a review:
         - place_id (string)
         - user_id (string)
         - text (string)
