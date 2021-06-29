@@ -1,9 +1,14 @@
 #!/usr/bin/python3
 import json
 import os
-from models.base_model import BaseModel #noborrar, se usan implicitamt en eval
-from models.user import User #noborrar, se usan implicitamt en eval
-
+# noborrar, se usan implicitamt en eval
+from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class FileStorage():
@@ -27,21 +32,25 @@ class FileStorage():
         """Serializes __objects to the JSON file
         """
         my_dict = {}
-        if len(self.__objects) >= 1:     
+        if len(self.__objects) >= 1:
             for key, value in self.__objects.items():
                 my_dict[key] = value.to_dict()
             string_representation = json.dumps(my_dict)
-            with open (self.__file_path, 'w', encoding='utf-8') as jsonfile:
+            with open(self.__file_path, 'w', encoding='utf-8') as jsonfile:
                 jsonfile.write(string_representation)
-        
+
     def reload(self):
         """Deserializes the JSON file to __objects
         """
         if os.path.isfile(self.__file_path):
-            with open(self.__file_path, encoding='utf-8') as jsonfile:
-                jsonstring = jsonfile.read()
-            dict_of_objects = json.loads(jsonstring)
+            with open(self.__file_path, encoding='utf-8') as json_file:
+                json_string = json_file.read()
+            dict_of_objects = json.loads(json_string)
             for key in dict_of_objects:
-                characteristics = dict_of_objects.get(key) # obtener el diccionario
-                new_object = eval(characteristics.get('__class__'))(**characteristics) # crear el objeto
-                self.new(new_object) # guardar el objeto en el diccionario de objetos
+                characteristics = dict_of_objects.get(key)
+                # obtain the dictionary
+                obtain_object = characteristics.get('__class__')
+                new_object = eval(obtain_object)(**characteristics)
+                # create object
+                self.new(new_object)
+                # save the object in the object dictionary

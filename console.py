@@ -102,7 +102,8 @@ class HBNBCommand(cmd.Cmd):
                 if args[0] in self.classes:
                     # if we create that kind of objects
                     if value.__class__.__name__ == args[0]:
-                        # if the class of the object matches the one they ask us
+                        # if the class of the object matches
+                        # the one they ask us
                         list_of_strings.append(value.__str__())
                 else:
                     print("** class doesn't exist **")
