@@ -19,7 +19,7 @@ class Test_Proyect(unittest.TestCase):
         - all the modules are documented
         """
 
-        # PEP8
+        # P EP8
         pep8 = "pep8 --count ."
         self.assertEqual(os.system(pep8), 0)
 
@@ -45,11 +45,9 @@ class Test_Proyect(unittest.TestCase):
             # First and last line
             with open(filee) as f:
                 first = f.readline()
-                last = f.read()[-47:]
-                line = "if __name__ == '__main__':\n    unittest.main()\n"
+                last = f.read()[-1]
                 self.assertTrue(first == '#!/usr/bin/python3\n', filee)
-                if filee != 'console.py':
-                    self.assertEqual(last, line, filee)
+                self.assertTrue(last == '\n', filee)
 
             # documentation of module
             self.assertTrue(len(filee.__doc__) > 5)

@@ -24,7 +24,7 @@ class Test_Unittests(unittest.TestCase):
         self.assertTrue(os.path.isfile('./tests/__init__.py'))
         self.assertTrue(os.path.isfile('./tests/test_models/__init__.py'))
 
-        # PEP8
+        # P EP8
         pep8 = "pep8 --count ./tests"
         self.assertEqual(os.system(pep8), 0)
 
