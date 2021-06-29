@@ -1,22 +1,22 @@
 #!/usr/bin/python3
-"""Unit test for the module User"""
+"""Unit test for the module City"""
 
 import unittest
-from models.user import User
+from models.city import City
 from models import storage
 
 
-class Test_User(unittest.TestCase):
-    """Test for the class User"""
-    instance = User()
+class Test_City(unittest.TestCase):
+    """Test for the class City"""
+    instance = City()
     data_base = storage.all()
-    instance_name = 'User.' + instance.id
-    instance.first_name = 'Betty'
+    instance_name = 'City.' + instance.id
+    instance.state_id = 'Betty'
 
-    def test_userinit(self):
+    def test_cityinit(self):
         """Test for the method __init__"""
         features = self.data_base.get(self.instance_name).to_dict()
-        mb = "<class 'models.user.User'>"
+        mb = "<class 'models.city.City'>"
         d = "<class 'datetime.datetime'>"
 
         # Data types
@@ -30,7 +30,7 @@ class Test_User(unittest.TestCase):
         self.assertIn('created_at', features.keys())
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
-        self.assertIn('first_name', features.keys())
+        self.assertIn('state_id', features.keys())
 
         self.instance.last_name = 'Holberton'
         features = self.data_base.get(self.instance_name).to_dict()
@@ -41,20 +41,20 @@ class Test_User(unittest.TestCase):
         features = self.data_base.get(self.instance_name).to_dict()
         self.assertEqual(features.get('perro'), 'Dali')
 
-    def test_userstr(self):
+    def test_citystr(self):
         """Test for the method __str__"""
-        cs = '[User] ({}) {}'.format(self.instance.id, self.instance.__dict__)
+        cs = '[City] ({}) {}'.format(self.instance.id, self.instance.__dict__)
         my_string = self.instance.__str__()
         self.assertEqual(cs, my_string)
 
-    def test_usersave(self):
+    def test_citysave(self):
         """Test for the method save"""
         dateofupdate = self.instance.updated_at
         self.instance.save()
         new_date = self.instance.updated_at
         self.assertNotEqual(dateofupdate, new_date)
 
-    def test_usertodict(self):
+    def test_citytodict(self):
         """Test for the method to_dict"""
         type_of_dict = str(type(self.instance.to_dict()))
         self.assertEqual(type_of_dict, "<class 'dict'>")
