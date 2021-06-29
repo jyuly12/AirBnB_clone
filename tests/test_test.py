@@ -32,7 +32,7 @@ class Test_Unittests(unittest.TestCase):
                     './tests/test_test.py',
                     './tests/test_project.py',
                     './tests/test_console.py',
-                    './tests/test_models/test_base_model.py'
+                    './tests/test_models/test_base_model.py',
                     './tests/test_models/test_user.py'
                     ]
 

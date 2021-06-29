@@ -8,7 +8,7 @@ import os
 class Test_Proyect(unittest.TestCase):
     """Class to test the proyect"""
 
-    def project(self):
+    def test_project(self):
         """Check the proyect requirements:
         - existence of all files and directories in the correct location
         - all the python scripts are executable
@@ -23,26 +23,33 @@ class Test_Proyect(unittest.TestCase):
         pep8 = "pep8 --count ."
         self.assertEqual(os.system(pep8), 0)
 
-        flist = ['README.md', 'console.py', 'models',
-                 './models/__init__.py', './models/amenity.py',
-                 './models/base_model.py', './models/city.py',
-                 './models/place.py', './models/review.py',
-                 './models/state.py', 'testing.py',
-                 './models/user.py']
+        # Readme file
+        self.assertTrue(os.path.isfile('README.md'))
+
+        # Package
+        self.assertTrue(os.path.isfile('./models/__init__.py'))
+
+        flist = ['console.py', './models/base_model.py',
+                 './models/city.py', './models/place.py',
+                 './models/review.py', './models/state.py',
+                 './models/user.py',
+                 './models/engine/file_storage.py']
 
         for filee in flist:
             # existence of all files and directories in the correct location
-            self.assertTrue(os.path.isfile(filee))
+            self.assertTrue(os.path.isfile(filee), filee)
 
             # files are executable
-            self.assertTrue(os.access(filee, os.X_OK))
+            self.assertTrue(os.access(filee, os.X_OK), filee)
 
-            # first and last line
+            # First and last line
             with open(filee) as f:
                 first = f.readline()
-                last = f.read()[-1]
-            self.assertTrue(first == '#!/usr/bin/python3\n')
-            self.assertTrue(last == '\n')
+                last = f.read()[-47:]
+                line = "if __name__ == '__main__':\n    unittest.main()\n"
+                self.assertTrue(first == '#!/usr/bin/python3\n', filee)
+                if filee != 'console.py':
+                    self.assertEqual(last, line, filee)
 
             # documentation of module
             self.assertTrue(len(filee.__doc__) > 5)
