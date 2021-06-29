@@ -2,16 +2,23 @@
 """ This module contains the entry point of the command interpreter """
 import cmd
 import sys
-from models.base_model import BaseModel
-from models.user import User
 from models import storage
+# modifiable objects from the console
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
     """Defines command interpreter parameters
     """
     prompt = '(hbnb) '
-    classes = ['BaseModel', 'User']
+    classes = ['Amenity', 'BaseModel', 'City',
+    'Place', 'Review', 'State', 'User']
 
     def do_quit(self, arg):
         """Quit command to exit the program
