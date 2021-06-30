@@ -20,7 +20,7 @@ class HBNBCommand(cmd.Cmd):
     classes = ['Amenity', 'BaseModel', 'City',
                'Place', 'Review', 'State', 'User']
 
-   def default(self, line):
+    def default(self, line):
         """Define special input parameters"""
         parts = line.split(".")
         comm = parts[1].split("(")[0]
