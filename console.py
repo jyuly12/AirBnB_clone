@@ -86,6 +86,9 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         counter = 0
         objects = storage.all()
+        if len(arg) == 0:
+            print("** class name missing **")
+            return
         for key in objects.keys():
             value = objects.get(key)
             if args[0] in self.classes:
