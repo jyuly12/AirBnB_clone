@@ -9,9 +9,11 @@ from models import storage
 class Test_City(unittest.TestCase):
     """Test for the class City"""
     instance = City()
+    instance.state_id = 'Betty'
+    instance.name = 'Bogota'
+
     data_base = storage.all()
     instance_name = 'City.' + instance.id
-    instance.state_id = 'Betty'
 
     def test_cityinit(self):
         """Test for the method __init__"""
@@ -30,16 +32,8 @@ class Test_City(unittest.TestCase):
         self.assertIn('created_at', features.keys())
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
+        self.assertIn('name', features.keys())
         self.assertIn('state_id', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
 
     def test_citystr(self):
         """Test for the method __str__"""

@@ -9,9 +9,10 @@ from models import storage
 class Test_Amenity(unittest.TestCase):
     """Test for the class Amenity"""
     instance = Amenity()
+    instance.name = 'Betty'
+
     data_base = storage.all()
     instance_name = 'Amenity.' + instance.id
-    instance.name = 'Betty'
 
     def test_amenityinit(self):
         """Test for the method __init__"""
@@ -31,15 +32,6 @@ class Test_Amenity(unittest.TestCase):
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
         self.assertIn('name', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
 
     def test_amenitystr(self):
         """Test for the method __str__"""

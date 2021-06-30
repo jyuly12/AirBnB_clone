@@ -9,9 +9,9 @@ from models import storage
 class Test_State(unittest.TestCase):
     """Test for the class State"""
     instance = State()
+    instance.name = 'El pais de las maravillas'
     data_base = storage.all()
     instance_name = 'State.' + instance.id
-    instance.name = 'El pais de las maravillas'
 
     def test_stateinit(self):
         """Test for the method __init__"""
