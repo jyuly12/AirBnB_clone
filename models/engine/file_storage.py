@@ -34,12 +34,10 @@ class FileStorage():
         """Serializes __objects to the JSON file
         """
         my_dict = {}
-        if len(self.__objects) >= 1:
-            for key, value in self.__objects.items():
-                my_dict[key] = value.to_dict()
-            string_representation = json.dumps(my_dict)
-            with open(self.__file_path, 'w', encoding='utf-8') as jsonfile:
-                jsonfile.write(string_representation)
+        for key, value in self.__objects.items():
+            my_dict[key] = value.to_dict()
+        with open(self.__file_path, 'w', encoding='utf-8') as jsonfile:
+            json.dump(my_dict, jsonfile)
 
     def reload(self):
         """Deserializes the JSON file to __objects
