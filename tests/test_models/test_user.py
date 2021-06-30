@@ -6,7 +6,7 @@ from models.user import User
 from models import storage
 
 
-class Test_User(unittest.TestCase):
+class TestUser(unittest.TestCase):
     """Test for the class User"""
     instance = User()
     data_base = storage.all()
