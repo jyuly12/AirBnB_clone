@@ -20,19 +20,16 @@ class FileStorage():
     __objects = {}
 
     def all(self):
-        """Returns the dictionary __objects
-        """
+        """Returns the dictionary __objects"""
         return self.__objects
 
     def new(self, obj):
-        """Sets in __objects the obj with key
-        """
+        """Sets in __objects the obj with key"""
         key_name = obj.__class__.__name__ + '.' + obj.id
         self.__objects.update({key_name: obj})
 
     def save(self):
-        """Serializes __objects to the JSON file
-        """
+        """Serializes __objects to the JSON file"""
         my_dict = {}
         for key, value in self.__objects.items():
             my_dict[key] = value.to_dict()
@@ -40,8 +37,7 @@ class FileStorage():
             json.dump(my_dict, jsonfile)
 
     def reload(self):
-        """Deserializes the JSON file to __objects
-        """
+        """Deserializes the JSON file to __objects"""
         if os.path.isfile(self.__file_path):
             with open(self.__file_path, encoding='utf-8') as json_file:
                 json_string = json_file.read()
