@@ -42,7 +42,7 @@ class HBNBCommand(cmd.Cmd):
                 elif comm == 'update':
                     id_name = line.split('"')[1]
                     dictionary_string = line.split('{')[1][:-1]
-                    if '{' in dictionary_string:
+                    if '{' in line:
                         import json
                         string = '{' + dictionary_string
                         string2 = string.replace("\'", '\"')
