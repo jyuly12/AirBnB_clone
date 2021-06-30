@@ -45,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
                     at_name = line.split('"')[3]
                     at_value = line.split(',')[-1][:-1]
                     str_update = "{} {} {} {}".format(class_name, id_name,
-                                          at_name, at_value)
+                                                      at_name, at_value)
                     self.do_update(str_update)
 
     def do_quit(self, arg):
