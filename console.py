@@ -195,20 +195,21 @@ class HBNBCommand(cmd.Cmd):
         elif len(args) == 1:
             print('** instance id missing **')
             return
-        elif len(args) == 2:
-            print("** attribute name missing **")
-            return
         elif len(args) == 3:
             print("** value missing **")
             return
         else:
-            value = args[3].replace('"', '')
             object_name = '{}.{}'.format(args[0], args[1])
             dict_of_objects = storage.all()
             if object_name in dict_of_objects.keys():
-                object = dict_of_objects.get(object_name)
-                object.__setattr__(args[2], value)
-                storage.save()
+                if len(args) == 2:
+                    print("** attribute name missing **")
+                    return
+                else:
+                    value = args[3].replace('"', '')
+                    object = dict_of_objects.get(object_name)
+                    object.__setattr__(args[2], value)
+                    storage.save()
             else:
                 print("** no instance found **")
                 return
