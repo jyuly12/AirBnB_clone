@@ -9,9 +9,12 @@ from models import storage
 class Test_Review(unittest.TestCase):
     """Test for the class Review"""
     instance = Review()
+    instance.place_id = '2886'
+    instance.user_id = "User Ana"
+    instance.text = "The best hotel"
+
     data_base = storage.all()
     instance_name = 'Review.' + instance.id
-    instance.place_id = 'Betty'
 
     def test_reviewinit(self):
         """Test for the method __init__"""
@@ -31,15 +34,8 @@ class Test_Review(unittest.TestCase):
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
         self.assertIn('place_id', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
+        self.assertIn('user_id', features.keys())
+        self.assertIn('text', features.keys())
 
     def test_reviewstr(self):
         """Test for the method __str__"""

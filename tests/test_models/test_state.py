@@ -11,7 +11,7 @@ class Test_State(unittest.TestCase):
     instance = State()
     data_base = storage.all()
     instance_name = 'State.' + instance.id
-    instance.name = 'Betty'
+    instance.name = 'El pais de las maravillas'
 
     def test_stateinit(self):
         """Test for the method __init__"""
@@ -31,15 +31,6 @@ class Test_State(unittest.TestCase):
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
         self.assertIn('name', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
 
     def test_statestr(self):
         """Test for the method __str__"""

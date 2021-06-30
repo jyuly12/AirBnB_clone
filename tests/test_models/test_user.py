@@ -12,6 +12,10 @@ class Test_User(unittest.TestCase):
     data_base = storage.all()
     instance_name = 'User.' + instance.id
     instance.first_name = 'Betty'
+    instance.email = "dalisaurito@ternura.com"
+    instance.password = "YosoyAurelioCheveroni"
+    instance.first_name = "Dali"
+    instance.last_name = "Vera"
 
     def test_userinit(self):
         """Test for the method __init__"""
@@ -31,15 +35,10 @@ class Test_User(unittest.TestCase):
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
         self.assertIn('first_name', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
+        self.assertIn('email', features.keys())
+        self.assertIn('password', features.keys())
+        self.assertIn('first_name', features.keys())
         self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
 
     def test_userstr(self):
         """Test for the method __str__"""

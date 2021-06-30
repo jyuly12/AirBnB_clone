@@ -9,9 +9,20 @@ from models import storage
 class Test_Place(unittest.TestCase):
     """Test for the class Place"""
     instance = Place()
+    instance.city_id = "Bogota"
+    instance.user_id = "dalisauritobebe"
+    instance.name = "DaliHotel"
+    instance.description = "El mas bello hotel"
+    instance.number_rooms = 1
+    instance.number_bathrooms = 1
+    instance.max_guest = 10
+    instance.price_by_night = 15
+    instance.latitude = 8.5
+    instance.longitude = 3.1
+    instance.amenity_ids = ['cariño', 'comprension', 'ternura']
+
     data_base = storage.all()
     instance_name = 'Place.' + instance.id
-    instance.city_id = 'perrito1'
 
     def test_placeinit(self):
         """Test for the method __init__"""
@@ -31,15 +42,16 @@ class Test_Place(unittest.TestCase):
         self.assertIn('updated_at', features.keys())
         self.assertIn('id', features.keys())
         self.assertIn('city_id', features.keys())
-
-        self.instance.last_name = 'Holberton'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertIn('last_name', features.keys())
-
-        # Extra features storage
-        self.instance.perro = 'Dali'
-        features = self.data_base.get(self.instance_name).to_dict()
-        self.assertEqual(features.get('perro'), 'Dali')
+        self.assertIn('user_id', features.keys())
+        self.assertIn('name', features.keys())
+        self.assertIn('description', features.keys())
+        self.assertIn('number_rooms', features.keys())
+        self.assertIn('number_bathrooms', features.keys())
+        self.assertIn('max_guest', features.keys())
+        self.assertIn('price_by_night', features.keys())
+        self.assertIn('latitude', features.keys())
+        self.assertIn('longitude', features.keys())
+        self.assertIn('amenity_ids', features.keys())
 
     def test_placestr(self):
         """Test for the method __str__"""
