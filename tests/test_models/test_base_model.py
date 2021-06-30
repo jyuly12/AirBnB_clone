@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 from models import storage
 
 
-class Test_BaseModel(unittest.TestCase):
+class TestBaseModel(unittest.TestCase):
     """Test for the class BaseModel"""
 
     def test_init(self):
