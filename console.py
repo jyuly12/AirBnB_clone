@@ -169,7 +169,7 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file).
         """
         args = arg.split()
-        value = args[3].replace('"', '').replace("'", "")
+        value = args[3].replace('"', '')
         if len(args) == 0:
             print('** class name missing **')
             return
