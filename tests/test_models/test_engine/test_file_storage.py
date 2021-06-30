@@ -14,19 +14,19 @@ class Test_FileStorage(unittest.TestCase):
         """Test for the method __init__"""
         pass
 
-    def test_all():
+    def test_all(self):
         """Test for the method all"""
         pass
 
-    def test_new():
+    def test_new(self):
         """Test for the method new"""
         pass
 
-    def test_save():
+    def test_save(self):
         """Test for the method save"""
         pass
 
-    def test_reload():
+    def test_reload(self):
         """Test for the method reload"""
         pass
 
