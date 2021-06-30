@@ -23,16 +23,16 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, arg):
         """Quit command to exit the program
         """
-        return True
+        sys.exit(0)
 
-    def emptyline(self, arg):
+    def emptyline(self):
         pass
 
     def do_EOF(self, arg):
         """Quit command to exit the program
         """
         print()
-        return True
+        sys.exit(0)
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it (to the JSON file) and
