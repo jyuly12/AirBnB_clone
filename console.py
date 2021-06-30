@@ -20,6 +20,44 @@ class HBNBCommand(cmd.Cmd):
     classes = ['Amenity', 'BaseModel', 'City',
                'Place', 'Review', 'State', 'User']
 
+    def default(self, line):
+        parts = line.split(".")
+        id_name = line.split('"')[1]
+        comm = parts[1].split("(")[0]
+        if len(parts) > 0:
+            class_name = parts[0]
+            string = "{} {}".format(class_name, id_name)
+            if len(parts) > 1:
+                command = parts[1]
+                if command == 'all()':
+                    self.do_all(class_name)
+                if command == 'count()':
+                    self.do_count(class_name)
+                if comm == 'show':
+                    self.do_show(string)
+                if comm == 'destroy':
+                    self.do_destroy(string)
+                if comm == 'update':
+                    at_name = line.split('"')[3]
+                    at_value = line.split(',')[-1][:-1]
+                    su = "{} {} {} {}".format(class_name, id_name,
+                                              at_name, at_value)
+                    self.do_update(su)
+
+    def do_count(self, arg):
+        args = arg.split()
+        counter = 0
+        objects = storage.all()
+        for key in objects.keys():
+            value = objects.get(key)
+            if args[0] in self.classes:
+                # if we have created that kind of objects
+                if value.__class__.__name__ == args[0]:
+                    # if the class of the object matches
+                    # the one they ask us
+                    counter += 1
+        print(counter)
+
     def do_quit(self, arg):
         """Quit command to exit the program
         """
@@ -98,7 +136,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """Prints all string representation of all instances based or not
-        on the class name.
+        on the class name.do_all
         """
         args = arg.split()
         list_of_strings = []
@@ -125,6 +163,7 @@ class HBNBCommand(cmd.Cmd):
         updating attribute (save the change into the JSON file).
         """
         args = arg.split()
+        value = args[3].replace('"', '').replace("'", "")
         if len(args) == 0:
             print('** class name missing **')
             return
@@ -145,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
             dict_of_objects = storage.all()
             if object_name in dict_of_objects.keys():
                 object = dict_of_objects.get(object_name)
-                object.__setattr__(args[2], args[3][1:-1])
+                object.__setattr__(args[2], value)
                 storage.save()
             else:
                 print("** no instance found **")
