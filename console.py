@@ -41,13 +41,13 @@ class HBNBCommand(cmd.Cmd):
                     self.do_destroy(string)
                 elif comm == 'update':
                     id_name = line.split('"')[1]
-                    dictionary_string = line.split('{')[1][:-1]
+
                     if '{' in line:
+                        dictionary_string = line.split('{')[1][:-1]
                         import json
                         string = '{' + dictionary_string
                         string2 = string.replace("\'", '\"')
                         dictionary = json.loads(string2)
-                        print(type(dictionary))
                         for key in dictionary:
                             at_name = key
                             at_value = dictionary.get(key)
@@ -57,13 +57,14 @@ class HBNBCommand(cmd.Cmd):
                                                               at_value)
                             self.do_update(str_update)
                         return
-                    at_name = line.split('"')[3]
-                    at_value = line.split(',')[-1][:-1]
-                    str_update = "{} {} {} {}".format(class_name,
-                                                      id_name,
-                                                      at_name,
-                                                      at_value)
-                    self.do_update(str_update)
+                    else:
+                        at_name = line.split('"')[3]
+                        at_value = line.split(',')[-1][:-1]
+                        str_update = "{} {} {} {}".format(class_name,
+                                                          id_name,
+                                                          at_name,
+                                                          at_value)
+                        self.do_update(str_update)
 
     def do_quit(self, arg):
         """Quit command to exit the program
