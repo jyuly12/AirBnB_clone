@@ -83,14 +83,14 @@ class HBNBCommand(cmd.Cmd):
     def do_count(self, arg=None):
         """Counts the number of objects stored in the .json
         """
-        args = arg.split()
+        if arg is None:
+            return
         counter = 0
         objects = storage.all()
         for key in objects.keys():
             value = objects.get(key)
-            if args[0] in self.classes:
-                # if we have created that kind of objects
-                if value.__class__.__name__ == args[0]:
+            if arg in self.classes:
+                if value.__class__.__name__ == arg:
                     # if the class of the object matches
                     # the one they ask us
                     counter += 1
