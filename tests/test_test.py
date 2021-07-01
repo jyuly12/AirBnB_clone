@@ -33,8 +33,11 @@ class Test_Unittests(unittest.TestCase):
                     './tests/test_project.py',
                     './tests/test_console.py',
                     './tests/test_models/test_base_model.py',
-                    './tests/test_models/test_user.py'
-                    ]
+                    './tests/test_models/test_user.py',
+                    './tests/test_models/test_city.py',
+                    './tests/test_models/test_review.py',
+                    './tests/test_models/test_amenity.py',
+                    './tests/test_models/test_place.py']
 
         for fil in test_list:
             # Existence of all files and directories in the correct location
