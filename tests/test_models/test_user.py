@@ -49,7 +49,7 @@ class TestUser(unittest.TestCase):
                      "password": "123456",
                      "email": "dalisaurio@perrito.com"}
         instance2 = User(**test_dict)
-        self.assertTrue(isinstance(test, User))
+        self.assertTrue(isinstance(instance2, User))
         self.assertEqual(instance2.id, "ff02d7e0-4254-43b3-b867-d9decb0dda13")
         self.assertEqual(instance2.first_name, "Pepito")
         self.assertEqual(instance2.last_name, "Perez")

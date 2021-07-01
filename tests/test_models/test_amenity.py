@@ -33,6 +33,16 @@ class Test_Amenity(unittest.TestCase):
         self.assertIn('id', features.keys())
         self.assertIn('name', features.keys())
 
+        test_dict = {"id": "fz02d7e0-4254-43b3-b867-d9decb0dda13",
+                     "created_at": "2021-06-28T17:47:38.773238",
+                     "updated_at": "2021-06-28T17:47:38.773248",
+                     "__class__": "Amenity",
+                     "name": "Pepito"}
+        instance2 = Amenity(**test_dict)
+        self.assertIsInstance(instance2, Amenity)
+        self.assertEqual(instance2.id, "fz02d7e0-4254-43b3-b867-d9decb0dda13")
+        self.assertEqual(instance2.name, "Pepito")
+
     def test_amenitystr(self):
         """Test for the method __str__"""
         cs = '[Amenity] ({}) {}'.format(

@@ -35,6 +35,20 @@ class Test_City(unittest.TestCase):
         self.assertIn('name', features.keys())
         self.assertIn('state_id', features.keys())
 
+        test_dict = {"id": "fz02d7e0-4254-43b3-b867-d9decb0dda13",
+                     "created_at": "2021-06-28T17:47:38.773238",
+                     "updated_at": "2021-06-28T17:47:38.773248",
+                     "__class__": "City",
+                     "state_id": "123",
+                     "name": "Bogotá"}
+
+        instance2 = City(**test_dict)
+
+        self.assertIsInstance(instance2, City)
+        self.assertEqual(instance2.id, "fz02d7e0-4254-43b3-b867-d9decb0dda13")
+        self.assertEqual(instance2.state_id, "123")
+        self.assertEqual(instance2.name, "Bogotá")
+
     def test_citystr(self):
         """Test for the method __str__"""
         cs = '[City] ({}) {}'.format(self.instance.id, self.instance.__dict__)

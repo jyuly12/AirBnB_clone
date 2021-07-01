@@ -37,6 +37,22 @@ class Test_Review(unittest.TestCase):
         self.assertIn('user_id', features.keys())
         self.assertIn('text', features.keys())
 
+        test_dict = {"id": "fy02d7e0-4254-43b3-b867-d9decb0dda13",
+                     "created_at": "2021-06-28T17:47:38.773238",
+                     "updated_at": "2021-06-28T17:47:38.773248",
+                     "__class__": "Review",
+                     "place_id": "Hotel Perrito",
+                     "user_id": "Dalisaurio",
+                     "text": "123456"}
+
+        instance2 = Review(**test_dict)
+
+        self.assertIsInstance(instance2, Review)
+        self.assertEqual(instance2.id, "fy02d7e0-4254-43b3-b867-d9decb0dda13")
+        self.assertEqual(instance2.place_id, "Hotel Perrito")
+        self.assertEqual(instance2.user_id, "Dalisaurio")
+        self.assertEqual(instance2.text, "123456")
+
     def test_reviewstr(self):
         """Test for the method __str__"""
         cs = '[Review] ({}) {}'.format(
