@@ -1,14 +1,14 @@
 # AirBnB clone - console
 Welcome to our AirBnB console proyect.
 
-
+<p align="center">
+<img src="https://pbs.twimg.com/media/E5OfUqaX0AIQ-WK?format=jpg&name=small"/>
+</p>
 
 > ## Synopsis
 
 This is the starting point of a series of projects that create a copy of AirBnB, this project focuses on creating a command interpreter, in addition to executing the process of storage and persist objects to a `file.json`
-<p align="center">
-<img src="https://pbs.twimg.com/media/E5OfUqaX0AIQ-WK?format=jpg&name=small"/>
-</p>
+
 Our command interpreter is limited to a single use-case (managing the objects of our project), so it is able of:
 -   Create a new object (ex: a new User or a new Place)
 -   Retrieve an object from a file, a database etc…
