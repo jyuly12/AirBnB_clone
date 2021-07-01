@@ -86,7 +86,7 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         counter = 0
         objects = storage.all()
-        if arg != None:
+        if len(args) > 0:
             for key in objects.keys():
                 value = objects.get(key)
                 if args[0] in self.classes:
