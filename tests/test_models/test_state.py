@@ -51,5 +51,6 @@ class Test_State(unittest.TestCase):
         self.assertEqual(type_of_dict, "<class 'dict'>")
         self.assertIn(self.instance_name, self.data_base.keys())
 
+
 if __name__ == '__main__':
     unittest.main()

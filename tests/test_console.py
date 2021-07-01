@@ -241,5 +241,6 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
             self.assertEqual("0", output.getvalue().strip())
 
+
 if __name__ == '__main__':
     unittest.main()

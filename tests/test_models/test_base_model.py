@@ -68,5 +68,6 @@ class TestBaseModel(unittest.TestCase):
         instance_name = 'BaseModel.' + instance.id
         self.assertIn(instance_name, data_base.keys())
 
+
 if __name__ == '__main__':
     unittest.main()

@@ -54,5 +54,6 @@ class Test_Unittests(unittest.TestCase):
             # Documentation of module
             self.assertTrue(len(fil.__doc__) > 5, fil)
 
+
 if __name__ == '__main__':
     unittest.main()
