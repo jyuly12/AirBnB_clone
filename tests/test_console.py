@@ -224,15 +224,6 @@ class Test_Console(unittest.TestCase):
             self.assertEqual(expected, output.getvalue().strip())
 
     # test count command
-    def test_count_class_missing(self):
-        expected = "** class name missing **"
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("count"))
-            self.assertEqual(expected, output.getvalue().strip())
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".count()"))
-            self.assertEqual(expected, output.getvalue().strip())
-
     def test_count_class_value_failed(self):
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("count MyModel"))
