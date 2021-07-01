@@ -29,6 +29,7 @@ Our command interpreter is limited to a single use-case (managing the objects of
 >## Content
 This repository contains the following files:
 
+```
 ├── AUTHORS
 ├── console.py
 ├── __init__.py
@@ -62,6 +63,7 @@ This repository contains the following files:
     │   └── test_user.py
     ├── test_project.py
     └── test_test.py
+ ```
 
 --------------------------------------------------
 >## Execution
