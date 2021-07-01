@@ -251,7 +251,7 @@ class Test_Console(unittest.TestCase):
     # test count command
     def test_count_class_missing(self):
         """test count command"""
-        expected = 'None'
+        expected = None
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".count()"))
             self.assertEqual(expected, output.getvalue().strip())
