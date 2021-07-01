@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         print()
         sys.exit(0)
 
-    def do_count(self, arg):
+    def do_count(self, arg=None):
         """Counts the number of objects stored in the .json
         """
         args = arg.split()
