@@ -39,6 +39,7 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("help count"))
             self.assertEqual(expected, output.getvalue().strip())
 
+# ------------------------------------------------------------------
     # test create command
     def test_created_class_name_missing(self):
         expected = "** class name missing **"
@@ -87,6 +88,16 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("BaseModel.show(\"12\")"))
             self.assertEqual(expected, output.getvalue().strip())
 
+    def test_show_better(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            id_value = output.getvalue().strip()
+            test = "show BaseModel {}".format(id_value)
+        with patch("sys.stdout", new=StringIO()) as output:
+            obj = storage.all()["BaseModel.{}".format(id_value)]
+            self.assertFalse(HBNBCommand().onecmd(test))
+            self.assertEqual(obj.__str__(), output.getvalue().strip())
+
     # test destroy command
     def test_destroy_name_missing(self):
         expected = "** class name missing **"
@@ -115,16 +126,48 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("BaseModel.destroy(\"12\")"))
             self.assertEqual(expected, output.getvalue().strip())
 
-    # tests all command
-    def test_all_function(self):
+    def test_destroy_func(self):
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("all BaseModel"))
-            self.assertIn("BaseModel", output.getvalue().strip())
-            self.assertNotIn("User", output.getvalue().strip())
+            self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            id_value = output.getvalue().strip()
+            test = "destroy BaseModel {}".format(id_value)
+        with patch("sys.stdout", new=StringIO()) as output:
+            object = storage.all()["BaseModel.{}".format(id_value)]
+            self.assertFalse(HBNBCommand().onecmd(test))
+            self.assertNotIn(object, storage.all())
+
+    # tests all command
+    def test_all_functions(self):
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            self.assertFalse(HBNBCommand().onecmd("create BaseMode"))
+            self.assertFalse(HBNBCommand().onecmd("create City"))
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("all Amenity"))
+            self.assertIn("Amenity", output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("BaseModel.all()"))
             self.assertIn("BaseModel", output.getvalue().strip())
-            self.assertNotIn("User", output.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("all City"))
+            self.assertIn("City", output.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("Place.all()"))
+            self.assertIn("Place", output.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("all Review"))
+            self.assertIn("Review", output.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("State.all()"))
+            self.assertIn("State", output.getvalue().strip())
+        with patch("sys.stdout", new=StringIO()) as output:
+            self.assertFalse(HBNBCommand().onecmd("all User"))
+            self.assertIn("User", output.getvalue().strip())
 
     def test_all_no_found(self):
         expected = "** class doesn't exist **"
