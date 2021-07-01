@@ -29,10 +29,40 @@ Our command interpreter is limited to a single use-case (managing the objects of
 >## Content
 This repository contains the following files:
 
-- **console.py** : Execute this file to open the Console. 
--  **models** : This directory contains the files that define the _Amenity_, _BaseModel_, _City_, _Place_, _Review_, _State_ and _User_ classes for the creation of the AirBnB clone.
-- **models/engine** : This directory defines the _FileStorage_ class that is responsible for storing the console's data in a .json file.
-- **tests** : This directory contains the unittests.
+├── AUTHORS
+├── console.py            -> Execute this one to open the console
+├── __init__.py
+├── models                -> Contains the classes of AirBnB
+│   ├── amenity.py
+│   ├── base_model.py     -> Super class of all the other classes
+│   ├── city.py
+│   ├── engine
+│   │   ├── file_storage.py   -> Data Storaging
+│   │   └── __init__.py
+│   ├── __init__.py
+│   ├── place.py
+│   ├── review.py
+│   ├── state.py
+│   └── user.py
+├── README.md
+└── tests                 -> Contains the unittest
+    ├── __init__.py
+    ├── test_console.py
+    ├── test_models
+    │   ├── __init__.py
+    │   ├── test_amenity.py
+    │   ├── test_base_model.py
+    │   ├── test_city.py
+    │   ├── test_engine
+    │   │   ├── __init__.py
+    │   │   └── test_file_storage.py
+    │   ├── test_place.py
+    │   ├── test_review.py
+    │   ├── test_state.py
+    │   └── test_user.py
+    ├── test_project.py
+    └── test_test.py
+
 --------------------------------------------------
 >## Execution
 This command interpreter works in interactive mode:
