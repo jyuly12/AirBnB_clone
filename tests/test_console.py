@@ -251,10 +251,7 @@ class Test_Console(unittest.TestCase):
     # test count command
     def test_count_class_missing(self):
         """test count command"""
-        expected = ""
-        with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("count"))
-            self.assertEqual(expected, output.getvalue().strip())
+        expected = 'None'
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd(".count()"))
             self.assertEqual(expected, output.getvalue().strip())
@@ -262,7 +259,7 @@ class Test_Console(unittest.TestCase):
     def test_count_class_value_failed(self):
         """test count command"""
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd("count MyModel"))
+            self.assertFalse(HBNBCommand().onecmd("Hello.count()"))
             self.assertEqual("0", output.getvalue().strip())
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
