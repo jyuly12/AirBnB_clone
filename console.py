@@ -86,16 +86,15 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         counter = 0
         objects = storage.all()
-        if len(args) > 0:
-            for key in objects.keys():
-                value = objects.get(key)
-                if args[0] in self.classes:
-                    # if we have created that kind of objects
-                    if value.__class__.__name__ == args[0]:
-                        # if the class of the object matches
-                        # the one they ask us
-                        counter += 1
-            print(counter)
+        for key in objects.keys():
+            value = objects.get(key)
+            if args[0] in self.classes:
+            # if we have created that kind of objects
+                if value.__class__.__name__ == args[0]:
+                # if the class of the object matches
+                # the one they ask us
+                    counter += 1
+        print(counter)
 
     def do_create(self, arg):
         """Creates a new instance of BaseModel, saves it (to the JSON file) and
