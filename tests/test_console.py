@@ -253,7 +253,7 @@ class Test_Console(unittest.TestCase):
         """test count command"""
         expected = '0'
         with patch("sys.stdout", new=StringIO()) as output:
-            self.assertFalse(HBNBCommand().onecmd(".count()"))    
+            self.assertFalse(HBNBCommand().onecmd(".count()"))
 
     def test_count_class_value_failed(self):
         """test count command"""
