@@ -1,10 +1,7 @@
 # AirBnB clone - console
 Welcome to our AirBnB console proyect.
 
-![](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUWMNL5ANN%2F20210701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210701T164420Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=b2b8692711f591e37d402eef8fe9257689de7f745feb17c60510aaa84944fe4d)
-
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/p00ES-5K4C8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+![](https://pbs.twimg.com/media/E5OfUqaX0AIQ-WK?format=jpg&name=small)
 
 > ## Synopsis
 
