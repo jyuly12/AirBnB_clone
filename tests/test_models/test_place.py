@@ -53,6 +53,38 @@ class Test_Place(unittest.TestCase):
         self.assertIn('longitude', features.keys())
         self.assertIn('amenity_ids', features.keys())
 
+        test_dict = {"id": "fz02d7e0-4254-43b3-b867-d9decb0dda13",
+                     "created_at": "2021-06-28T17:47:38.773238",
+                     "updated_at": "2021-06-28T17:47:38.773248",
+                     "__class__": "Place",
+                     "city_id": "123Bog",
+                     "user_id": "Dali1",
+                     "name": "Dalisaurito",
+                     "description": "Hotel",
+                     "number_rooms": "8",
+                     "number_bathrooms": "3",
+                     "max_guest": "300",
+                     "price_by_night": "100",
+                     "latitude": "123",
+                     "longitude": "456",
+                     "amenity_ids": "Comprension y Ternura"}
+
+        instance2 = Place(**test_dict)
+
+        self.assertIsInstance(instance2, Place)
+        self.assertEqual(instance2.id, "fz02d7e0-4254-43b3-b867-d9decb0dda13")
+        self.assertEqual(instance2.city_id, "123Bog")
+        self.assertEqual(instance2.user_id, "Dali1")
+        self.assertEqual(instance2.name, "Dalisaurito")
+        self.assertEqual(instance2.description, "Hotel")
+        self.assertEqual(instance2.number_rooms, "8")
+        self.assertEqual(instance2.number_bathrooms, "3")
+        self.assertEqual(instance2.max_guest, "300")
+        self.assertEqual(instance2.price_by_night, "100")
+        self.assertEqual(instance2.latitude, "123")
+        self.assertEqual(instance2.longitude, "456")
+        self.assertEqual(instance2.amenity_ids, "Comprension y Ternura")
+
     def test_placestr(self):
         """Test for the method __str__"""
         cs = '[Place] ({}) {}'.format(self.instance.id, self.instance.__dict__)
@@ -71,6 +103,7 @@ class Test_Place(unittest.TestCase):
         type_of_dict = str(type(self.instance.to_dict()))
         self.assertEqual(type_of_dict, "<class 'dict'>")
         self.assertIn(self.instance_name, self.data_base.keys())
+
 
 if __name__ == '__main__':
     unittest.main()
