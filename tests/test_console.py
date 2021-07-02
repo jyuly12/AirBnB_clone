@@ -264,6 +264,22 @@ class Test_Console(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("MyModel.count()"))
             self.assertEqual("0", output.getvalue().strip())
 
+    def test_default_update(self):
+        """Test Default Update"""
+        listt = ["BaseModel", "User", "Place", "Amenity",
+                 "City", "State", "Review"]
+
+        for item in listt:
+            with patch("sys.stdout", new=StringIO()) as output:
+                self.assertFalse(HBNBCommand().
+                                 onecmd("create {}".format(item)), item)
+                id_value = output.getvalue().strip()
+                s = "\"{}\", \"perro\", \"dali\"".format(id_value)
+            with patch("sys.stdout", new=StringIO()) as output:
+                self.assertFalse(HBNBCommand().
+                                 onecmd("{}.update({})".format(item, s)), item)
+                obj = storage.all()["{}.{}".format(item, id_value)]
+
 
 if __name__ == '__main__':
     unittest.main()
